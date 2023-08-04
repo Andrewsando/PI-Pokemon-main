@@ -201,6 +201,7 @@ Se debe desarrollar una aplicación utilizando **React** y **Redux** que conteng
 -  Botones/Opciones para **filtrar** por tipo, y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).
 -  Botones/Opciones para **ordenar** tanto ascendentemente como descendentemente los pokemones por orden alfabético y por ataque.
 -  Paginado: el listado de pokemones se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 12 pokemones por página.
+//lunes
 
 <br />
 
@@ -236,6 +237,8 @@ Este formulario debe ser **controlado completamente con JavaScritp**. No se pued
 
 > [**IMPORANTE**]: es requisito que el formulario de creación esté validado sólo con JavaScript. Puedes agregar las validaciones que consideres. Por ejemplo: que el nombre del pokemon no pueda contener números, o que la defensa no pueda exceder determinado valor, etc.
 
+//martes
+
 <br />
 
 ---
@@ -249,6 +252,8 @@ Ten en cuenta que en esta instancia no es obligatorio el desarrollo de testing p
 -  Al menos tener un componente del frontend con sus tests respectivos.
 -  Al menos tener dos rutas del backend con sus tests respectivos.
 -  Al menos tener un modelo de la base de datos con sus tests respectivos.
+
+//miercoles
 
 <br />
 
