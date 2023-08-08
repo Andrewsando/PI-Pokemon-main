@@ -1,33 +1,46 @@
-const { Pokemon } = require("../db");
+const { Pokemon, Type, PokemonTypes } = require("../db");
 
 const postearEnDB = async (data) => {
- 
-    try {
-const buscar = await Pokemon.findOne({
-    where: {id : data.id}})
+  try {
+    // const buscar = await Pokemon.findOne({
+    //     where: {name : data.name}})
 
-    if(buscar){
- throw new Error('It already exist on DB')
-    }
+    //     console.log('busq', buscar);
+    //     if(buscar){
+    //  throw new Error('It already exist on DB')
+    //     }
+    console.log("createeee");
 
-    const create = await Pokemon.findOrCreate({
-      where: {
-        id: data.id,
+
+
+
+
+
+    const types = await Type.findAll({where: {id: data.types}})
+    const pokemon = await Pokemon.create({
         name: data.name,
         image: data.image,
         life: data.life,
         attack: data.attack,
-        defense: data.defense ,
+        defense: data.defense,
         speed: data.speed,
         height: data.height,
-        weight: data.weight,
-      },
+        weight: data.weight, 
+    },{
+      include: [Type]
     });
+    await pokemon.addTypes(types)
 
-    return create;
+
+
+
+
+    return pokemon;
   } catch (e) {
+    console.log("este es el error", e);
+
     throw new Error(e.message);
   }
 };
 
-module.exports = {postearEnDB}
+module.exports = { postearEnDB };

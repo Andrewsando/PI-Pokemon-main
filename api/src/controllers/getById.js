@@ -5,21 +5,20 @@ const { plantilla } = require("../utils/pokemon.js");
 
 const getById = async (id) => {
   try {
-    console.log('lolita');
-    const consultaBD = await Pokemon.findOne({
-      where: {id: id}});
-    console.log(consultaBD);
-    if ('lero lole lola',!consultaBD) {
-      console.log('url',`${URL}/${id}`)
+    const isUUID = id.match("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+    if(isUUID){
+      const consultaBD = await Pokemon.findOne({
+        where: {id}});
+        if(consultaBD === null){
+          throw new Error('Error')
+        }
+      return consultaBD
+    } else {
       const { data } = await axios(`${URL}/${id}`);
-      console.log('datitaaa',data);
+      console.log('kjnkn', data);
       const character = plantilla(data)
-      console.log('asdkjbads',character);
-
       return character;
-
     }
-    return consultaBD;
   } catch (e) {
     console.log(e)
     return error.message;

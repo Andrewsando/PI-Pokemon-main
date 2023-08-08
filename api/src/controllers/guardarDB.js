@@ -6,9 +6,9 @@ const guardarDB = async () => {
   try {
     const busqueda = await Type.findAll()
 
-    if(busqueda.length <= 0){
+    if(busqueda.length == 0){
     const {data} = await axios(`${URL}/type`)
-    console.log('data.',data);
+    console.log('data',data);
 
     let soloName = data.results.map(e=>e.name)
         for(let name of soloName){
@@ -17,9 +17,9 @@ const guardarDB = async () => {
       name: name}])
     console.log('intento',ingresoDatos);
     }
-    return console.log('Ok info saved');;
+    console.log('Ok info saved');;
   } 
-  throw new Error('there are elements already on Database')
+  return busqueda
   }catch (e) {
     console.log(e)
     throw new Error(e .message);
