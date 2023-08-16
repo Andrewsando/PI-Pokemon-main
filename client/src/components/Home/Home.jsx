@@ -7,7 +7,6 @@ import styles from "./Home.module.css";
 import Filters from "../Filters/Filters";
 
 const Home = ({ getAll, filteredPokemons, numPage }) => {
-
   useEffect(() => {
     getAll();
   }, [getAll]);

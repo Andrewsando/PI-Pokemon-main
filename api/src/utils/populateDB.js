@@ -1,5 +1,5 @@
 const { getFromAPI } = require("../controllers/getAll");
-const { guardarDB } = require("../controllers/guardarDB");
+const { saveOnDB } = require("../controllers/saveOnDB");
 const { Pokemon, Type, PokemonTypes } = require("../db");
 
 populateDB = () => {
@@ -13,7 +13,7 @@ populateDB = () => {
             return
         }
         //Types
-        await guardarDB()
+        await saveOnDB()
         //Pokemons
         await getFromAPI()
     })

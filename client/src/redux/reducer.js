@@ -16,7 +16,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, { type, payload }) => {
-  console.log("es de este type", type);
   switch (type) {
     case GET_ALL:
       return {
@@ -36,19 +35,20 @@ const reducer = (state = initialState, { type, payload }) => {
     case FILTER_TYPES:
       const pokemonsTypesFiltered = state.allPokemons.filter((pokemon) =>
         pokemon.Types
-          ? pokemon.Types.find((t) => {
-              return t.name === payload;
+          ? pokemon.Types.find((type) => {
+              return type.name === payload;
             })
           : false
       );
       return {
         ...state,
         filteredPokemons:
-          payload === "Select" ? [...state.allPokemons] : pokemonsTypesFiltered,
+          payload === "Select" 
+          ? [...state.allPokemons] 
+          : pokemonsTypesFiltered,
         numPage: 1,
       };
     case FILTER_ORIGIN:
-      console.log(payload);
       if (payload === "All") {
         return {
           ...state,

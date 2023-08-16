@@ -1,4 +1,4 @@
-.container{
+.container {
     background-image: url('../../../public/pxfuel.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -9,12 +9,13 @@
     align-items: end;
     align-items: center;
 }
-.welcome{
+
+.welcome {
     font-size: 4rem;
     margin-top: 14rem;
 }
 
-.button{
+.button {
     background: none;
     border-radius: 30px;
     padding: 0.2rem;
@@ -22,12 +23,12 @@
     border-width: 5px;
     color: black;
     width: 9rem;
-position: absolute;
+    position: absolute;
     font-size: xx-large;
     margin-top: 25rem;
 }
 
-.button:hover{
+.button:hover {
     background-color: black;
     color: yellow;
 }

@@ -10,13 +10,10 @@ const AddPokemon = ({ postOnDB }) => {
   const [errors, setErrors] = useState({});
   const [done, setDone] = useState(false);
 
-
-
   //name
   const [name, setName] = useState("");
   const handleNameChange = (event) => {
     setName(event.target.value);
-    console.log(event.target.value);
     setErrors(validations(event.target.value));
   };
   //img
@@ -24,7 +21,6 @@ const AddPokemon = ({ postOnDB }) => {
   const handleImgChange = (event) => {
     setImg(event.target.value);
   };
-
   //life
   const [life, setLife] = useState(50);
   const handleLifeChange = (event) => {
@@ -45,13 +41,11 @@ const AddPokemon = ({ postOnDB }) => {
   const handleSpeedChange = (event) => {
     setSpeed(event.target.value);
   };
-
   //Height
   const [height, setHeight] = useState(50);
   const handleHeightChange = (event) => {
     setHeight(event.target.value);
   };
-
   //Weight
   const [weight, setWeight] = useState(50);
   const handleWeightChange = (event) => {
@@ -64,7 +58,6 @@ const AddPokemon = ({ postOnDB }) => {
   useEffect(() => {
     const getTypes = async () => {
       const { data } = await axios("http://localhost:3001/pokemons/type");
-      console.log("typesss", data);
       setTypes(data);
     };
 
@@ -92,10 +85,10 @@ const AddPokemon = ({ postOnDB }) => {
         weight: weight,
         types: selectedTypes.map((t) => t.id),
       };
-      console.log("parse", parse);
+
       postOnDB(parse);
     } catch (e) {
-      console.log(e);
+      return e.message;
     }
   };
   const navigate = useNavigate();
@@ -141,8 +134,7 @@ const AddPokemon = ({ postOnDB }) => {
                 Create
                 <div
                   role="tooltip"
-                  classNam
-                  e={styles.tooltipBox}
+                  className={styles.tooltipBox}
                   id="disabledReason"
                 >
                   <span className={styles.tooltipItself}>
@@ -191,9 +183,7 @@ const AddPokemon = ({ postOnDB }) => {
                   value={life}
                   onChange={handleLifeChange}
                 />
-
                 <br />
-
                 <label className={styles.textRanges}>Attack: {attack}</label>
                 <input
                   type="range"
@@ -203,7 +193,6 @@ const AddPokemon = ({ postOnDB }) => {
                   onChange={handleAttackChange}
                 />
                 <br />
-
                 <label className={styles.textRanges}>Defense: {defense}</label>
                 <input
                   type="range"
@@ -222,7 +211,6 @@ const AddPokemon = ({ postOnDB }) => {
                   onChange={handleSpeedChange}
                 />
                 <br />
-
                 <label className={styles.textRanges}>Height: {height}</label>
                 <input
                   type="range"
@@ -232,7 +220,6 @@ const AddPokemon = ({ postOnDB }) => {
                   onChange={handleHeightChange}
                 />
                 <br />
-
                 <label className={styles.textRanges}>Weight: {weight}</label>
                 <input
                   type="range"

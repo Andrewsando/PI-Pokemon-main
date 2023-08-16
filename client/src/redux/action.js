@@ -20,7 +20,7 @@ export const getAll = () => {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   };
 };
@@ -39,13 +39,10 @@ export const getByName = (name) => {
   };
 };
 export const postOnDB = (obj) => {
-  console.log("entré a la action postOnDB");
   const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
-      console.log("entré al try");
       await axios.post(endpoint, obj);
-      console.log("data3");
       return dispatch({
         type: POST_ON_DB,
       });

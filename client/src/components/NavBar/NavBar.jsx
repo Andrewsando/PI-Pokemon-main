@@ -7,29 +7,24 @@ const NavBar = () => {
 
   return (
     <div className={style.navBar}>
-      {location.pathname !== "/pokemons" &&location.pathname !== "/" 
-          ? (
-            <button className={style.button}>
-              <NavLink className={style.textButton} to="/pokemons">
-                Home
-              </NavLink>
-            </button>
-          ) : null}
+      {location.pathname !== "/pokemons" && location.pathname !== "/" ? (
+        <button className={style.button}>
+          <NavLink className={style.textButton} to="/pokemons">
+            Home
+          </NavLink>
+        </button>
+      ) : null}
 
-{location.pathname !== "/form" 
-          ? (
-          <button className={style.button}>
-            <NavLink className={style.textButton} to="/form">
-              Create your Pokemon
-            </NavLink>
-          </button>)
-          : null}
+      {location.pathname !== "/form" ? (
+        <button className={style.button}>
+          <NavLink className={style.textButton} to="/form">
+            Create your Pokemon
+          </NavLink>
+        </button>
+      ) : null}
 
-          <img src="/title.png" alt="title"></img>
-          {location.pathname === "/pokemons" 
-          ? (<SearchBar />)
-          : null}
-
+      <img src="/title.png" alt="title"></img>
+      {location.pathname === "/pokemons" ? <SearchBar /> : null}
 
       <button className={style.button}>
         <NavLink className={style.textButton} to="/">

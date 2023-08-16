@@ -1,10 +1,9 @@
-.container{
+.container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
-    
 }
 
 
@@ -13,35 +12,34 @@
     border-color: black;
     border-width: 3px;
     background-color: rgb(10, 185, 179);
-    color:white
-
+    color: white
 }
 
 
-.text{
+.text {
     color: rgb(255, 251, 0);
     font-size: 2rem;
     padding: 1.5rem;
 }
 
-.color{
+.color {
     background-color: rgb(3, 86, 86);
     padding-bottom: 2rem;
-
 }
-.none{
+
+.none {
     font-size: 4rem;
     color: #2f2452;
     padding: 3rem;
-
 }
 
-.gif{
+.gif {
     border-radius: 100%;
     margin-top: 1.5rem;
     box-shadow: 1 1 20px black;
 }
-.allNoOne{
+
+.allNoOne {
     background-color: rgb(198, 153, 254);
     height: 100%;
     max-height: 92vh;

@@ -8,7 +8,6 @@
     display: flex;
     margin: 1.2rem;
     gap: 2rem;
-    
 }
 
 .gridSpan {
@@ -23,7 +22,7 @@
 
 .title {
     font-size: 2rem;
-    color:#00ECFA;
+    color: #00ECFA;
     padding: 1rem;
 }
 
@@ -36,11 +35,13 @@
     width: 30%;
     margin-left: 3rem;
 }
-.line{
+
+.line {
     border-left: thin solid #ffffff;
     left: 38%;
     position: absolute;
 }
+
 .card {
     background-color: #ff7700;
     width: 16rem;
@@ -58,7 +59,6 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 12px;
     color: black;
-
 }
 
 .name {
@@ -90,7 +90,6 @@
 .textName {
     font-size: 20px;
     color: black;
-
 }
 
 .blankSpace {
@@ -122,7 +121,6 @@
 .typeText {
     grid-column: 3 span;
     color: rgb(255, 255, 255);
-
 }
 
 .columns {
@@ -130,7 +128,8 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     padding: 2rem;
-    border-radius: 12px;;
+    border-radius: 12px;
+    ;
     height: 24.5rem;
     margin-left: 5rem;
     background-color: #10a352;
@@ -151,6 +150,7 @@
     justify-self: center;
     height: 2rem;
 }
+
 .createButton:disabled {
     background-color: gainsboro;
 }
@@ -205,14 +205,16 @@
     background-color: white;
     color: black;
     border-color: black;
+    border-radius: 10px;
 }
 
 .selected {
     background-color: rgb(26, 165, 203);
     color: white;
+    border-radius: 10px;
 }
 
-.doneCard{
+.doneCard {
     top: 20%;
     left: 40%;
     position: absolute;
@@ -225,15 +227,14 @@
     box-shadow: -10px 18px 11px -1px rgba(0, 0, 0, 0.75);
 }
 
-.imgCard{
+.imgCard {
     border-radius: 100%;
     margin: 1rem 0;
     height: 12rem;
     width: 12rem;
-
 }
 
-.doneButton{
+.doneButton {
     border-radius: 15px;
     border-width: 2px;
     border-color: #ffffff;
@@ -242,20 +243,19 @@
     padding: 0.5rem;
 }
 
-.doneButton:hover{
+.doneButton:hover {
     border-color: #ffffff;
     background-color: white;
     color: #2d1616;
     padding: 0.5rem;
 }
 
-.darkbck{
+.darkbck {
     width: 100%;
     height: 100%;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     left: 0;
-    top: 0;   
-    
+    top: 0;
 }
