@@ -24,11 +24,14 @@ fs.readdirSync(path.join(__dirname, '/models'))
          file.slice(-3) === '.js'
    )
    .forEach((file) => {
+      console.log("File ",file)
       modelDefiners.push(require(path.join(__dirname, '/models', file)));
    });
 
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach((model) => model(sequelize));
+modelDefiners.forEach((model) => { 
+   console.log(model)
+   model(sequelize)});
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
@@ -39,16 +42,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon, Type, PokemonTypes } = sequelize.models;
+const { Pokemon, Type } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Pokemon.belongsToMany(Type, { through: PokemonTypes});
-Type.belongsToMany(Pokemon, { through: PokemonTypes});
-
-PokemonTypes.belongsTo(Pokemon, { foreignKey:  'PokemonId'})
-
-PokemonTypes.belongsTo(Type, { foreignKey:  'TypeId'})
+Pokemon.belongsToMany(Type, { through: "PokemonTypes"});
+Type.belongsToMany(Pokemon, { through: "PokemonTypes"});
 
 module.exports = {
    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

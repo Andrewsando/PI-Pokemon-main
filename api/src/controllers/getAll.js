@@ -1,12 +1,16 @@
 const { Pokemon, Type, pokemon_types } = require("../db");
 const URL = "http://pokeapi.co/api/v2/pokemon/";
 const axios = require("axios");
-const { plantilla, modelo } = require("../utils/pokemon");
+const { modelo } = require("../utils/pokemon");
+const { postearEnDB } = require("./postearEnDB");
 
 const getAll = async () => {
   try {
     const pokemonsDB = await Pokemon.findAll(
-      //{include:[Type]}
+      {order: [
+        ['api_id', 'ASC'],
+    ],
+        include:[Type]}
       );
      
       return [ ...pokemonsDB];
@@ -18,13 +22,15 @@ const getAll = async () => {
 
 const getFromAPI = async() => {
   let { data } = await axios(URL);
-  const api = [] 
-  console.log(data.next)
+  const api = [] ;
+  console.log(data.next )
   while (data.next) {
     api.push(...data.results.map(async pokemon => {
       try{
         const { data } = await axios(pokemon.url)
-        return modelo(data)
+        const mapped = await modelo(data)
+        const saved = await postearEnDB(mapped)
+        return saved
       } catch(e) {
         console.log(e)
       }
@@ -36,15 +42,17 @@ const getFromAPI = async() => {
 
   try{
     const results = await Promise.all(api)
-    console.log('result', results.length);
-    await Pokemon.bulkCreate(results,{
-      include: [Type],
-      updateOnDuplicate: [Type],
-      returning: false
-  })
+  //   await Pokemon.bulkCreate(results,{
+
+
+  //     // include: [Type],
+  //     // updateOnDuplicate: [Pokemon.name, Type.name],
+  //     // ignoreDuplicates: true,
+  //     // returning: false
+  // })
   console.log('Pokemons Loaded!')
   } catch(e) {
-    console.log(e)
+    console.log(e.sql, e)
   }
 }
 

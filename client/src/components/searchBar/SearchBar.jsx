@@ -1,35 +1,53 @@
 import { useState } from "react"
-import axios from "axios"
+import { getAll, getByName } from "../../redux/action";
+import { connect } from "react-redux";
+import style from './SearchBar.module.css'
 
 
-export default function SearchBar (){
+const SearchBar = ({getByName, getAll})=> {
 const [name, setName] = useState('')
-const [pokemons, setPokemons] = useState([]);
+const [filtered,setFiltered] = useState(false)
+
 
 const handleChange = (event) =>{
-    setName(event.target.value)
+ setName(event.target.value)
 }
-
-async function onSearchName(name){
-    try{
-        console.log('que pasa');
-      const {data} = await axios(
-        `http://localhost:3001/pokemons?name=${name}`
-      );
-        console.log('datota', data);
-      if(data.name){
-        setPokemons((oldPokemons)=> [...oldPokemons, data])
-      }}
-      catch (error) {
-        alert("¡There are no pokemons with that name, you must have to enter full name, please verify!")
-      }
-    }
-
+const handleReset = () =>{
+  getAll()
+  setFiltered(false)
+ }
+ 
     return (
     <div>
-        <input type = "search" placeholder = "Búsqueda" onChange = {handleChange} value = {name}></input>
-        <button onClick={() => {onSearchName(name); setName('')}}> Agregar </button>
-        
+        <input className={style.searchBar} type = "search" placeholder = "Search Pokemons..." onChange = {handleChange} value = {name}></input>
+        <button className={style.button} onClick={() => { 
+          setName(''); 
+          getByName(name);
+          setFiltered(true);
+        }}> Search Pokemon </button>   
+
+      {filtered && <button className={style.button}onClick={ handleReset }> Reset pokemons </button>}   
     </div>
     )
 }
+
+const mapStateToProps = (state) => {
+  return{
+    allPokemons : state.allPokemons,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getByName : (name)=> {
+      dispatch(getByName(name))
+    },
+    getAll: () => {
+      dispatch(getAll());
+    },
+
+
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (SearchBar)

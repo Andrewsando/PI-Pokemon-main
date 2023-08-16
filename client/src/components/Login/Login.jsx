@@ -1,3 +1,4 @@
+import styles from './login.module.css'
 
 const login = ({access}) =>{
 
@@ -6,9 +7,9 @@ const login = ({access}) =>{
         access()
     }
     return(
-        <div>
-            <button onClick={handlesubmit}> Ingreso </button>
-            
+        <div className={styles.container}>
+            <h1 className={styles.welcome}>Welcome to the Pokemon's API</h1>
+            <button className={styles.button} onClick={handlesubmit}> Log In </button>            
         </div>
     )
 }

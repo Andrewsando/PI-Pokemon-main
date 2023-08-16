@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from "./components/Home/Home.jsx";
 import Detail from "./components/Detail/Detail.jsx";
 import AddPokemon from "./components/Form/AddPokemon.jsx";
+import styles from './App.module.css'
 
 
 function App() {
@@ -14,8 +15,7 @@ function App() {
     navigate("/pokemons");
   }
   return (
-    <div className="App">
-      <div>
+    <div className={styles.App}>
           {location.pathname !== "/"
            ? (<NavBar/>)
            : null}
@@ -24,8 +24,8 @@ function App() {
           <Route path="/pokemons" element={<Home/>} />
           <Route path="/pokemons/:id" element={<Detail/>} />
           <Route path="/form" element={<AddPokemon/>} />
+          
         </Routes>
-      </div>
     </div>
   );
 }

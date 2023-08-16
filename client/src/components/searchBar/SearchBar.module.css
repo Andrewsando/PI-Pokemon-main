@@ -1,0 +1,14 @@
+.searchBar{
+    border-radius: 5px;
+    color: black;
+    width: 15rem;
+}
+
+.button{
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: white;
+    margin-left: 5px;
+    margin-bottom: 0;
+    
+}

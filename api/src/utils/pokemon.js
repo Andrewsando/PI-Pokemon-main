@@ -1,4 +1,4 @@
-
+const {Type} = require("../db")
  const plantilla = (data) =>{
    return { 
     id: data.id,
@@ -14,9 +14,8 @@
 }
 }
 
-const modelo = (data) => {
+const modelo = async(data) => {
   //GetAllTypes
-  
   return {
     api_id: data.id,
     name: data.name,
@@ -27,7 +26,7 @@ const modelo = (data) => {
     speed: data.stats.find(s => s.stat.name === 'speed').base_stat,
     height: data.height,
     weight: data.weight,
-    Types: data.types.map(t => t.id )
+    types: [...(await Type.findAll({where : {name: data.types.map(({type}) =>type.name)}} ))?.map((t)=>t.id)]
   }
 }
 

@@ -1,0 +1,14 @@
+.button{
+    background: none;
+    color: beige;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 2rem ;
+    margin-bottom: 1rem;
+    width: 5rem;
+}
+
+.button:hover {
+    background: beige;
+    color: black;
+}
