@@ -33,7 +33,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
       };
     case FILTER_TYPES:
-      const pokemonsTypesFiltered = state.allPokemons.filter((pokemon) =>
+      const pokemonsTypesFiltered = state.filteredPokemons.filter((pokemon) =>
         pokemon.Types
           ? pokemon.Types.find((type) => {
               return type.name === payload;

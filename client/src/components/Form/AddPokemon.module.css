@@ -161,7 +161,7 @@
     border-color: black;
 }
 
-.createButton:disabled:hover.tooltipBox {
+.createButton:disabled:hover .tooltipBox {
     visibility: visible;
     opacity: unset
 }
@@ -258,4 +258,9 @@
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.errors {
+    color: red;
+    font-size: 18px;
 }

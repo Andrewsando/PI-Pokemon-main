@@ -14,12 +14,13 @@ const AddPokemon = ({ postOnDB }) => {
   const [name, setName] = useState("");
   const handleNameChange = (event) => {
     setName(event.target.value);
-    setErrors(validations(event.target.value));
+    setErrors(validations(event.target.value, event.target.name));
   };
   //img
   const [img, setImg] = useState("");
   const handleImgChange = (event) => {
     setImg(event.target.value);
+    setErrors(validations(event.target.value, event.target.name));
   };
   //life
   const [life, setLife] = useState(50);
@@ -156,12 +157,16 @@ const AddPokemon = ({ postOnDB }) => {
                 </label>
                 <input
                   className={styles.blankSpace}
-                  name="Name"
+                  name="name"
                   onChange={handleNameChange}
                 ></input>
-                {errors.name && (
-                  <span style={{ color: "red" }}>{errors.name}</span>
-                )}
+                {errors.name &&
+                  errors.name.map((e) => (
+                    <>
+                      <span className={styles.errors}>{e}</span>
+                      <br />
+                    </>
+                  ))}
                 <br />
                 <br />
                 <label className={styles.textName}>
@@ -172,6 +177,9 @@ const AddPokemon = ({ postOnDB }) => {
                   name="image"
                   onChange={handleImgChange}
                 ></input>
+                {errors.img && (
+                  <span className={styles.errors}>{errors.img}</span>
+                )}
               </form>
               <form className={styles.formValues}>
                 <h2 className={styles.classTest}>Choose the properties</h2>

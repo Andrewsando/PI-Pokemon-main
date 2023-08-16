@@ -12,6 +12,8 @@ import axios from "axios";
 const Filters = ({ filterOrigin, filterTypes, getAll, orderCards }) => {
   const [types, setTypes] = useState([]);
   const [order, setOrder] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [type, setType] = useState("");
   const [filtered, setFiltered] = useState(false);
 
   useEffect(() => {
@@ -23,6 +25,10 @@ const Filters = ({ filterOrigin, filterTypes, getAll, orderCards }) => {
   }, []);
 
   const handleFilterTypes = (event) => {
+    setType(event.target.value);
+    if (origin) {
+      filterOrigin(origin);
+    }
     filterTypes(event.target.value);
     orderCards(order);
     setFiltered(true);
@@ -31,11 +37,17 @@ const Filters = ({ filterOrigin, filterTypes, getAll, orderCards }) => {
   const handleReset = (e) => {
     setFiltered(false);
     setOrder("");
+    setOrigin("");
+    setType("");
     getAll();
   };
 
   const handleFilterOrigin = (event) => {
     filterOrigin(event.target.value);
+    if (type) {
+      filterTypes(type);
+    }
+    setOrigin(event.target.value);
     orderCards(order);
     setFiltered(true);
   };
@@ -63,7 +75,7 @@ const Filters = ({ filterOrigin, filterTypes, getAll, orderCards }) => {
         className={styles.filter}
         onChange={handleOrder}
       >
-        <option value="Choose order" selected>
+        <option value="Choose order" selected hidden>
           {" "}
           Choose order{" "}
         </option>
@@ -73,7 +85,7 @@ const Filters = ({ filterOrigin, filterTypes, getAll, orderCards }) => {
         <option value="Min">Min Attack</option>
       </select>
       <select id="types" className={styles.filter} onChange={handleFilterTypes}>
-        <option value="Select" selected>
+        <option value="Select" selected hidden>
           Select Types
         </option>
         {types.map((e, i) => (
@@ -106,7 +118,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => { 
+const mapStateToProps = (state) => {
   return {
     allPokemons: state.allPokemons,
     numPage: state.numPage,

@@ -61,9 +61,11 @@ router.post("/pokemons", async (req, res) => {
     ) {
       return res.status(400).send("Missing information");
     }
+    console.log('data', data);
     const creation = await postOnDB(data);
     return res.status(200).json({ msg: "created", data: creation });
   } catch (e) {
+    console.log('error', e);
     return res.status(404).send("It already exist");
   }
 });
